@@ -1,4 +1,4 @@
-# love2dPrototype
+# love2dPrototypes
 A repo for me to prototype some projects I've been thinking about lately.  
 Every project here uses [LÖVE](https://love2d.org/).
 
