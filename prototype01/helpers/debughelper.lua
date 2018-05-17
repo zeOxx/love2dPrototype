@@ -1,13 +1,15 @@
 DebugHelper = Class{}
 
 function DebugHelper:init()
-	self.x = 5
-	self.y = 5
-	self.spaceBetweenY = 10
+	self:resetValues()
 end
 
 function DebugHelper:update()
-	self.y = 5
+	self:resetValues()
+end
+
+function DebugHelper:resetValues()
+	self.x = 5
 	self.y = 5
 	self.spaceBetweenY = 10
 end
