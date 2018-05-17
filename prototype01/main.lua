@@ -60,11 +60,12 @@ end
 
 -- Update mouse position stuff
 function love.mousemoved(x, y, dx, dy)
-	mouse:update(dx, dy)
+	mouse:updatePosition(dx, dy)
 end
 
 -- update
-function love.update()
+function love.update(dt)
+	-- camera:update()
 	keyhandler:update()
 	debugHelper:update()
 end
@@ -89,9 +90,14 @@ end
 function drawDebug()
 	if DEBUG then
 		push:start()
+			debugHelper:draw()
+
+			love.graphics.setColor(0, 1, 0, 1)
 			player:drawDebug()
 			mouse:drawDebug()
 			camera:drawDebug()
+			debugHelper:drawText('FPS: ' .. love.timer.getFPS())
+
 		push:finish()
 	end
 end

@@ -6,9 +6,18 @@ function Mouse:init(x, y)
 	self.crosshairSprite = love.graphics.newImage('assets/sprites/crosshair.png')
 end
 
-function Mouse:update(dx, dy)
+function Mouse:getMiddlePosition()
+	return { x = self.position.x + (self.crosshairSprite:getWidth() / 2), y = self.position.y + (self.crosshairSprite:getHeight() / 2) }
+end
+
+function Mouse:updatePosition(dx, dy)
 	mouse.position.x = mouse.position.x + (dx / RATIO)
 	mouse.position.y = mouse.position.y + (dy / RATIO)
+end
+
+function Mouse:updatePositionFromPlayerMovement(dx, dy)
+	mouse.position.x = mouse.position.x + dx
+	mouse.position.y = mouse.position.y + dy
 end
 
 function Mouse:draw()
@@ -18,6 +27,6 @@ function Mouse:draw()
 end
 
 function Mouse:drawDebug()
-	debugHelper:draw('mouseX: ' .. mouse.position.x)
-	debugHelper:draw('mouseY: ' .. mouse.position.y)
+	debugHelper:drawText('mouseX: ' .. mouse.position.x)
+	debugHelper:drawText('mouseY: ' .. mouse.position.y)
 end

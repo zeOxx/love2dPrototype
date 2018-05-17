@@ -14,7 +14,18 @@ function DebugHelper:resetValues()
 	self.spaceBetweenY = 10
 end
 
-function DebugHelper:draw(text)
+function DebugHelper:drawText(text)
 	love.graphics.print(text, self.x, self.y)
 	self.y = self.y + self.spaceBetweenY
+end
+
+function DebugHelper:draw()
+	self:drawPlayerMouseLine()
+end
+
+function DebugHelper:drawPlayerMouseLine()
+	love.graphics.setColor(1, 0, 0, 1)
+	local playerPos = player:getScreenPosition()
+	local mousePos = mouse:getMiddlePosition()
+	love.graphics.line(playerPos.x, playerPos.y, mousePos.x, mousePos.y)
 end
