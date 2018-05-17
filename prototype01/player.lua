@@ -18,4 +18,6 @@ end
 
 function Player:drawDebug()
 	-- DEBUG STUFF
+	love.graphics.print('playerX: ' .. self.position.x or 0, 5, 5)
+	love.graphics.print('playerY: ' .. self.position.y or 0, 5, 15)
 end
