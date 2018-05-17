@@ -18,6 +18,6 @@ function Mouse:draw()
 end
 
 function Mouse:drawDebug()
-	love.graphics.print('mouseX: ' .. self.position.x or 0, 5, 25)
-	love.graphics.print('mouseY: ' .. self.position.y or 0, 5, 35)
+	debugHelper:draw('mouseX: ' .. mouse.position.x)
+	debugHelper:draw('mouseY: ' .. mouse.position.y)
 end

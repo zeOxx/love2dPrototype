@@ -7,6 +7,7 @@ require 'Camera'
 require 'Player'
 require 'Mouse'
 require 'Keyhandler'
+require 'helpers/Debughelper'
 
 -- Globals
 GAME_TITLE = 'Prototype01'
@@ -31,6 +32,7 @@ function love.load()
 	player = Player(0, 0)
 	camera = Camera(player.position.x + (VIRTUAL_WIDTH / 2), player.position.y + (VIRTUAL_HEIGHT / 2))
 	keyhandler = Keyhandler()
+	debugHelper = DebugHelper()
 
 	DEBUG = false
 end
@@ -52,8 +54,8 @@ function initMouse()
 end
 
 function initFonts()
-	smallFont = love.graphics.newFont('assets/fonts/font.ttf', 8)
-	love.graphics.setFont(smallFont)
+	debugFont = love.graphics.newFont('assets/fonts/font.ttf', 8)
+	love.graphics.setFont(debugFont)
 end
 
 -- Update mouse position stuff
@@ -64,6 +66,7 @@ end
 -- update
 function love.update()
 	keyhandler:update()
+	debugHelper:update()
 end
 
 function love.draw()
@@ -86,8 +89,8 @@ end
 function drawDebug()
 	if DEBUG then
 		push:start()
-			mouse:drawDebug()
 			player:drawDebug()
+			mouse:drawDebug()
 			camera:drawDebug()
 		push:finish()
 	end

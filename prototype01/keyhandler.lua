@@ -34,4 +34,14 @@ function love.keypressed(key)
 	if key == 'f1' then
 		DEBUG = not DEBUG
 	end
+
+	if key == 'lshift' then
+		player.walking = true
+	end
+end
+
+function love.keyreleased(key)
+	if key == 'lshift' then
+		player.walking = false
+	end
 end

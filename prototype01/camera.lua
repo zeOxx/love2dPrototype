@@ -12,8 +12,8 @@ function Camera:set()
 end
 
 function Camera:drawDebug()
-	love.graphics.print('cameraX: ' .. self.position.x or 0, 5, 45)
-	love.graphics.print('cameraY: ' .. self.position.y or 0, 5, 55)
+	debugHelper:draw('cameraX: ' .. camera.position.x)
+	debugHelper:draw('cameraY: ' .. camera.position.y)
 end
 
 function Camera:unset()
