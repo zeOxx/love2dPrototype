@@ -84,8 +84,6 @@ function love.draw()
 	player:draw()
 	mouse:draw()
 
-	love.graphics.rectangle('fill', camera.position.x, camera.position.y, -20, -20)
-
 	camera:unset() -- CAMERA UNSET
 
 	-- HUD STUFF (TODO)
