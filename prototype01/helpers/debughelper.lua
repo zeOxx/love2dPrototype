@@ -28,4 +28,7 @@ function DebugHelper:drawPlayerMouseLine()
 	local playerPos = player:getScreenPosition()
 	local mousePos = mouse:getMiddlePosition()
 	love.graphics.line(playerPos.x, playerPos.y, mousePos.x, mousePos.y)
+
+	love.graphics.setColor(0, 1, 0, 1)
+	love.graphics.rectangle('fill', (playerPos.x + mousePos.x) / 2, (playerPos.y + mousePos.y) / 2, 1, 1)
 end

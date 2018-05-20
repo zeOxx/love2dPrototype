@@ -9,8 +9,18 @@ function Player:init(x, y)
 	self.walkSpeed = .5
 end
 
-function Player:getScreenPosition()
-	return { x = self.position.x + camera.position.x + (self.dimensions.width / 2), y = self.position.y + camera.position.y + (self.dimensions.height / 2) }
+function Player:getScreenPosition(noCam)
+	if noCam then
+		return {
+			x = self.position.x + (self.dimensions.width / 2),
+			y = self.position.y + (self.dimensions.height / 2)
+		}
+	else
+		return {
+			x = self.position.x - camera.position.x + (self.dimensions.width / 2),
+			y = self.position.y - camera.position.y + (self.dimensions.height / 2)
+		}
+	end
 end
 
 function Player:update(dx, dy)

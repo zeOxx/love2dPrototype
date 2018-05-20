@@ -6,11 +6,18 @@ function Mouse:init(x, y)
 	self.crosshairSprite = love.graphics.newImage('assets/sprites/crosshair.png')
 end
 
-function Mouse:getMiddlePosition()
-	return {
-		x = self.position.x + camera.position.x + (self.crosshairSprite:getWidth() / 2),
-		y = self.position.y + camera.position.y + (self.crosshairSprite:getHeight() / 2)
-	}
+function Mouse:getMiddlePosition(noCam)
+	if noCam then
+		return {
+			x = self.position.x + (self.crosshairSprite:getWidth() / 2),
+			y = self.position.y + (self.crosshairSprite:getHeight() / 2)
+		}
+	else
+		return {
+			x = self.position.x - camera.position.x + (self.crosshairSprite:getWidth() / 2),
+			y = self.position.y - camera.position.y + (self.crosshairSprite:getHeight() / 2)
+		}
+	end
 end
 
 function Mouse:updatePosition(dx, dy)

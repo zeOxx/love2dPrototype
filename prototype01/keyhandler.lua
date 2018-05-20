@@ -22,6 +22,24 @@ function Keyhandler:update()
 	end
 
 	player:update(dx, dy)
+
+	-- Camera during debug
+	if DEBUG then
+		local cdx, cdy = 0, 0
+		if love.keyboard.isDown('left') then
+			cdx = -1
+		elseif love.keyboard.isDown('right') then
+			cdx = 1
+		end
+
+		if love.keyboard.isDown('up') then
+			cdy = -1
+		elseif love.keyboard.isDown('down') then
+			cdy = 1
+		end
+
+		camera:move(cdx, cdy)
+	end
 end
 
 function love.keypressed(key)

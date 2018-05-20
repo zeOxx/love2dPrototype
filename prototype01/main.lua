@@ -7,7 +7,11 @@ require 'Camera'
 require 'Player'
 require 'Mouse'
 require 'Keyhandler'
+
+-- Helpers
 require 'helpers/Debughelper'
+require 'helpers/Camerahelper'
+
 
 -- Globals
 GAME_TITLE = 'Prototype01'
@@ -16,7 +20,7 @@ RESOLUTION_HEIGHT = 1080
 VIRTUAL_WIDTH = 480
 VIRTUAL_HEIGHT = 270
 
-RATIO = 1920 / 480
+RATIO = RESOLUTION_WIDTH / VIRTUAL_WIDTH
 
 DEBUG = false
 
@@ -30,9 +34,10 @@ function love.load()
 
 	mouse = Mouse(0, 0)
 	player = Player(0, 0)
-	camera = Camera(player.position.x + (VIRTUAL_WIDTH / 2), player.position.y + (VIRTUAL_HEIGHT / 2))
+	camera = Camera(player.position.x - (VIRTUAL_WIDTH / 2), player.position.y - (VIRTUAL_HEIGHT / 2))
 	keyhandler = Keyhandler()
 	debugHelper = DebugHelper()
+	cameraHelper = CameraHelper()
 
 	DEBUG = false
 end
@@ -65,7 +70,8 @@ end
 
 -- update
 function love.update(dt)
-	-- camera:update()
+	local focusPoint = cameraHelper:getCameraFocusPoint()
+	camera:update(focusPoint.x - (VIRTUAL_WIDTH / 2), focusPoint.y - (VIRTUAL_HEIGHT / 2))
 	keyhandler:update()
 	debugHelper:update()
 end
@@ -75,8 +81,10 @@ function love.draw()
 	-- clear screen
 	love.graphics.clear({ .2, .2, .5, 1 })
 
-	mouse:draw()
 	player:draw()
+	mouse:draw()
+
+	love.graphics.rectangle('fill', camera.position.x, camera.position.y, -20, -20)
 
 	camera:unset() -- CAMERA UNSET
 
