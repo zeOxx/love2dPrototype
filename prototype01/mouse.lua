@@ -7,17 +7,20 @@ function Mouse:init(x, y)
 end
 
 function Mouse:getMiddlePosition()
-	return { x = self.position.x + (self.crosshairSprite:getWidth() / 2), y = self.position.y + (self.crosshairSprite:getHeight() / 2) }
+	return {
+		x = self.position.x + camera.position.x + (self.crosshairSprite:getWidth() / 2),
+		y = self.position.y + camera.position.y + (self.crosshairSprite:getHeight() / 2)
+	}
 end
 
 function Mouse:updatePosition(dx, dy)
-	mouse.position.x = mouse.position.x + (dx / RATIO)
-	mouse.position.y = mouse.position.y + (dy / RATIO)
+	self.position.x = self.position.x + (dx / RATIO)
+	self.position.y = self.position.y + (dy / RATIO)
 end
 
 function Mouse:updatePositionFromPlayerMovement(dx, dy)
-	mouse.position.x = mouse.position.x + dx
-	mouse.position.y = mouse.position.y + dy
+	self.position.x = self.position.x + dx
+	self.position.y = self.position.y + dy
 end
 
 function Mouse:draw()
@@ -27,6 +30,6 @@ function Mouse:draw()
 end
 
 function Mouse:drawDebug()
-	debugHelper:drawText('mouseX: ' .. mouse.position.x)
-	debugHelper:drawText('mouseY: ' .. mouse.position.y)
+	debugHelper:drawText('mouseX: ' .. self.position.x)
+	debugHelper:drawText('mouseY: ' .. self.position.y)
 end

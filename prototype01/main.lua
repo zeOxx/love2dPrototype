@@ -28,7 +28,7 @@ function love.load()
 	initMouse()
 	initFonts()
 
-	mouse = Mouse(push:toGame(love.mouse.getPosition()))
+	mouse = Mouse(0, 0)
 	player = Player(0, 0)
 	camera = Camera(player.position.x + (VIRTUAL_WIDTH / 2), player.position.y + (VIRTUAL_HEIGHT / 2))
 	keyhandler = Keyhandler()
@@ -71,17 +71,16 @@ function love.update(dt)
 end
 
 function love.draw()
-	camera:set()
-		-- clear screen
-		love.graphics.clear({ .2, .2, .5, 1 })
+	camera:set() -- CAMERA SET
+	-- clear screen
+	love.graphics.clear({ .2, .2, .5, 1 })
 
-		player:draw()
-	camera:unset()
+	mouse:draw()
+	player:draw()
 
-	-- HUD STUFF
-	push:start()
-		mouse:draw()
-	push:finish()
+	camera:unset() -- CAMERA UNSET
+
+	-- HUD STUFF (TODO)
 
 	-- DEBUG
 	drawDebug()
@@ -89,15 +88,14 @@ end
 
 function drawDebug()
 	if DEBUG then
-		push:start()
-			debugHelper:draw()
+		push:start() -- START
+		debugHelper:draw()
 
-			love.graphics.setColor(0, 1, 0, 1)
-			player:drawDebug()
-			mouse:drawDebug()
-			camera:drawDebug()
-			debugHelper:drawText('FPS: ' .. love.timer.getFPS())
-
-		push:finish()
+		love.graphics.setColor(0, 1, 0, 1)
+		player:drawDebug()
+		mouse:drawDebug()
+		camera:drawDebug()
+		debugHelper:drawText('FPS: ' .. love.timer.getFPS())
+		push:finish() -- FINISH
 	end
 end
