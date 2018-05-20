@@ -20,8 +20,11 @@ function Keyhandler:update()
 	elseif love.keyboard.isDown('s') then
 		dy = 1
 	end
-
-	player:update(dx, dy)
+	local length = math.sqrt(dx^2+dy^2)
+	if length > 1 then
+		dx,dy = dx/length ,dy/length
+	end
+	player:setDelta(dx, dy)
 
 	-- Camera during debug
 	if DEBUG then
@@ -39,6 +42,11 @@ function Keyhandler:update()
 		end
 
 		camera:move(cdx, cdy)
+	end
+
+	-- Mouse
+	if love.mouse.isDown(1) then
+		player:shoot()
 	end
 end
 

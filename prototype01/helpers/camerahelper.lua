@@ -1,7 +1,7 @@
 CameraHelper = Class{}
 
 function CameraHelper:init()
-	-- empty
+	-- EMPTY
 end
 
 function CameraHelper:getCameraFocusPoint()

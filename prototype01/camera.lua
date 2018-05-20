@@ -24,11 +24,9 @@ function Camera:set()
 end
 
 function Camera:drawDebug()
-	debugHelper:drawText('cameraX: ' .. self.position.x)
-	debugHelper:drawText('cameraY: ' .. self.position.y)
-	local focusPoint = cameraHelper:getCameraFocusPoint()
-	debugHelper:drawText('focusPointX: ' .. focusPoint.x)
-	debugHelper:drawText('focusPointY: ' .. focusPoint.y)
+	debugHelper:drawText('-CAMERA-')
+	debugHelper:drawText('x: ' .. self.position.x)
+	debugHelper:drawText('y: ' .. self.position.y)
 end
 
 function Camera:unset()

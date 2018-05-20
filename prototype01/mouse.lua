@@ -37,6 +37,7 @@ function Mouse:draw()
 end
 
 function Mouse:drawDebug()
-	debugHelper:drawText('mouseX: ' .. self.position.x)
-	debugHelper:drawText('mouseY: ' .. self.position.y)
+	debugHelper:drawText('-MOUSE-')
+	debugHelper:drawText('x: ' .. self.position.x)
+	debugHelper:drawText('y: ' .. self.position.y)
 end

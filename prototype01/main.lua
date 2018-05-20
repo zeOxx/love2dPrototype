@@ -7,6 +7,8 @@ require 'Camera'
 require 'Player'
 require 'Mouse'
 require 'Keyhandler'
+require 'Projectile'
+require 'Weapon'
 
 -- Helpers
 require 'helpers/Debughelper'
@@ -73,6 +75,7 @@ function love.update(dt)
 	local focusPoint = cameraHelper:getCameraFocusPoint()
 	camera:update(focusPoint.x - (VIRTUAL_WIDTH / 2), focusPoint.y - (VIRTUAL_HEIGHT / 2))
 	keyhandler:update()
+	player:update(dt)
 	debugHelper:update()
 end
 
