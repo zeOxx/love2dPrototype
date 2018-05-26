@@ -2,6 +2,8 @@
 A repo for me to prototype some projects I've been thinking about lately.  
 Every project here uses [LÖVE](https://love2d.org/).
 
+Check the [wiki](https://github.com/zeOxx/love2dPrototypes/wiki) for more information
+
 ### Libs
 [push.lua](https://github.com/Ulydev/push)  
 [class.lua](https://github.com/jonstoler/class.lua)
