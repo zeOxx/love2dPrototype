@@ -9,10 +9,14 @@ require 'Mouse'
 require 'Keyhandler'
 require 'Projectile'
 require 'Weapon'
+require 'Map'
+require 'TileSet'
+require 'Tile'
 
 -- Helpers
 require 'helpers/Debughelper'
 require 'helpers/Camerahelper'
+require 'helpers/Tilehelper'
 
 
 -- Globals
@@ -40,6 +44,9 @@ function love.load()
 	keyhandler = Keyhandler()
 	debugHelper = DebugHelper()
 	cameraHelper = CameraHelper()
+	tileHelper = TileHelper()
+	map = Map()
+	map:loadMap('devmap', tileHelper:getDevTileSet())
 
 	DEBUG = false
 end
@@ -52,7 +59,7 @@ function initWindow()
 	push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, {
 		fullscreen = false,
 		resizable = false,
-		vsync = true
+		vsync = false
 	})
 end
 
@@ -82,7 +89,8 @@ end
 function love.draw()
 	camera:set() -- CAMERA SET
 	-- clear screen
-	love.graphics.clear({ .2, .2, .5, 1 })
+	love.graphics.clear({ 0, 0, 0, 1 })
+	map:draw(-10, -10)
 
 	player:draw()
 	mouse:draw()
