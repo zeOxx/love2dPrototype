@@ -46,8 +46,6 @@ function love.load()
 	mouse = Mouse(map.playerSpawn.x, map.playerSpawn.y)
 
 	camera = Camera(player.position.x - (VIRTUAL_WIDTH / 2), player.position.y - (VIRTUAL_HEIGHT / 2))
-
-	DEBUG = false
 end
 
 -- Inits
