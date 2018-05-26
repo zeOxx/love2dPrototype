@@ -26,9 +26,10 @@ function Player:shoot()
 		-- get direction vector
 		local direction = { x = mousePos.x - playerPos.x, y = mousePos.y - playerPos.y }
 
+		local actualPlayerPos = self:getScreenPosition(true)
 		-- Create projectile and add it to the table
 		local weaponProj = self.weapons[self.activeWeapon].proj
-		local projectile = Projectile(self.position.x, self.position.y, direction, rot, weaponProj.lifetime, weaponProj.type, weaponProj.texture, weaponProj.speed)
+		local projectile = Projectile(actualPlayerPos.x, actualPlayerPos.y, direction, rot, weaponProj.lifetime, weaponProj.type, weaponProj.texture, weaponProj.speed)
 
 		table.insert(self.activeProjectiles, projectile)
 		self.weapons[self.activeWeapon].shooting = true

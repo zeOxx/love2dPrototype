@@ -37,16 +37,15 @@ function love.load()
 	initWindow()
 	initMouse()
 	initFonts()
+	initHelpers()
 
-	mouse = Mouse(0, 0)
-	player = Player(0, 0)
-	camera = Camera(player.position.x - (VIRTUAL_WIDTH / 2), player.position.y - (VIRTUAL_HEIGHT / 2))
-	keyhandler = Keyhandler()
-	debugHelper = DebugHelper()
-	cameraHelper = CameraHelper()
-	tileHelper = TileHelper()
 	map = Map()
 	map:loadMap('devmap', tileHelper:getDevTileSet())
+
+	player = Player(map.playerSpawn.x, map.playerSpawn.y)
+	mouse = Mouse(map.playerSpawn.x, map.playerSpawn.y)
+
+	camera = Camera(player.position.x - (VIRTUAL_WIDTH / 2), player.position.y - (VIRTUAL_HEIGHT / 2))
 
 	DEBUG = false
 end
@@ -59,7 +58,7 @@ function initWindow()
 	push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, RESOLUTION_WIDTH, RESOLUTION_HEIGHT, {
 		fullscreen = false,
 		resizable = false,
-		vsync = false
+		vsync = true
 	})
 end
 
@@ -70,6 +69,13 @@ end
 function initFonts()
 	debugFont = love.graphics.newFont('assets/fonts/font.ttf', 8)
 	love.graphics.setFont(debugFont)
+end
+
+function initHelpers()
+	keyhandler = Keyhandler()
+	debugHelper = DebugHelper()
+	cameraHelper = CameraHelper()
+	tileHelper = TileHelper()
 end
 
 -- Update mouse position stuff
@@ -90,7 +96,7 @@ function love.draw()
 	camera:set() -- CAMERA SET
 	-- clear screen
 	love.graphics.clear({ 0, 0, 0, 1 })
-	map:draw(-10, -10)
+	map:draw()
 
 	player:draw()
 	mouse:draw()

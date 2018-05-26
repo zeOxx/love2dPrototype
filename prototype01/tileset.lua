@@ -1,8 +1,9 @@
 TileSet = Class{}
 
-function TileSet:init(name)
+function TileSet:init(name, dimensions)
 	self.name = name
 	self.tiles = {}
+	self.dimensions = dimensions or 16
 end
 
 function TileSet:getTileWithCharacter(character)
