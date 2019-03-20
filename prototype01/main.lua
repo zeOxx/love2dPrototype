@@ -85,8 +85,8 @@ end
 function love.update(dt)
 	local focusPoint = cameraHelper:getCameraFocusPoint()
 	camera:update(focusPoint.x - (VIRTUAL_WIDTH / 2), focusPoint.y - (VIRTUAL_HEIGHT / 2))
-	keyhandler:update()
-	player:update(dt)
+	keyhandler:updateGame()
+	player:update(dt, map)
 	debugHelper:update()
 end
 

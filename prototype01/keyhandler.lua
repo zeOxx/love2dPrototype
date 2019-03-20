@@ -4,7 +4,7 @@ function Keyhandler:init()
 	-- EMPTY
 end
 
-function Keyhandler:update()
+function Keyhandler:updateGame()
 	-- Player movement
 	-- X
 	local dx, dy = 0, 0
