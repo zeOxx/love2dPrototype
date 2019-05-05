@@ -1,6 +1,6 @@
 # love2dPrototypes
 A repo for me to prototype some projects I've been thinking about lately.  
-Every project here uses [LÖVE](https://love2d.org/).
+Every project here is made with [LÖVE](https://love2d.org/).
 
 Check the [wiki](https://github.com/zeOxx/love2dPrototypes/wiki) for more information
 
