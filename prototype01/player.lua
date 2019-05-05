@@ -3,7 +3,7 @@ Player = Class{}
 function Player:init(x, y)
 	self.position = { x = x, y = y }
 	self.delta = { x = 0, y = 0 }
-	self.dimensions = { width = 8, height = 18 }
+	self.dimensions = { w = 8, h = 18 }
 
 	self.speed = .9
 	self.walking = false
@@ -39,13 +39,13 @@ end
 function Player:getScreenPosition(noCam)
 	if noCam then
 		return {
-			x = self.position.x + (self.dimensions.width / 2),
-			y = self.position.y + (self.dimensions.height / 2)
+			x = self.position.x + (self.dimensions.w / 2),
+			y = self.position.y + (self.dimensions.h / 2)
 		}
 	else
 		return {
-			x = self.position.x - camera.position.x + (self.dimensions.width / 2),
-			y = self.position.y - camera.position.y + (self.dimensions.height / 2)
+			x = self.position.x - camera.position.x + (self.dimensions.w / 2),
+			y = self.position.y - camera.position.y + (self.dimensions.h / 2)
 		}
 	end
 end
@@ -122,13 +122,13 @@ function Player:checkCollision(map)
 		if nextX > collTile.x + tileSetDimensions then
 			tileCollision = false
 		end
-		if nextX + self.dimensions.width < collTile.x then
+		if nextX + self.dimensions.w < collTile.x then
 			tileCollision = false
 		end
 		if nextY > collTile.y + tileSetDimensions then
 			tileCollision = false
 		end
-		if nextY + self.dimensions.height < collTile.y then
+		if nextY + self.dimensions.h < collTile.y then
 			tileCollision = false
 		end
 
@@ -144,7 +144,7 @@ function Player:checkCollision(map)
 end
 
 function Player:draw()
-	love.graphics.rectangle('fill', self.position.x, self.position.y, self.dimensions.width, self.dimensions.height)
+	love.graphics.rectangle('fill', self.position.x, self.position.y, self.dimensions.w, self.dimensions.h)
 
 	for index, proj in pairs(self.activeProjectiles) do
 		proj:draw()

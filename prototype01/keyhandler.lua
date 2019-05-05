@@ -50,6 +50,12 @@ function Keyhandler:updateGame()
 	end
 end
 
+function Keyhandler:updateMenu()
+	if love.mouse.isDown(1) then
+
+	end
+end
+
 function love.keypressed(key)
 	-- escape handling
 	if key == 'escape' then

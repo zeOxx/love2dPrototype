@@ -4,6 +4,7 @@ function Mouse:init(x, y)
 	self.position = { x = x, y = y }
 
 	self.crosshairSprite = love.graphics.newImage('assets/sprites/crosshair.png')
+	self.menuSprite = love.graphics.newImage('assets/sprites/menumouse.png')
 end
 
 function Mouse:getMiddlePosition(noCam)
@@ -31,8 +32,10 @@ function Mouse:updatePositionFromPlayerMovement(dx, dy)
 end
 
 function Mouse:draw()
-	if GAME_STATE == 'GAME' then
+	if GAME_STATE == GAME_STATES.game then
 		love.graphics.draw(self.crosshairSprite, self.position.x, self.position.y)
+	elseif GAME_STATE == GAME_STATES.mainMenu then
+		love.graphics.draw(self.menuSprite, self.position.x, self.position.y)
 	end
 end
 
