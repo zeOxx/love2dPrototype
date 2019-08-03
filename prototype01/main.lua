@@ -99,12 +99,14 @@ end
 -- update
 function love.update(dt)
 	if GAME_STATE == GAME_STATES.game then
+		-- GAME
 		local focusPoint = cameraHelper:getCameraFocusPoint()
 		camera:update(focusPoint.x - (VIRTUAL_WIDTH / 2), focusPoint.y - (VIRTUAL_HEIGHT / 2))
 		keyhandler:updateGame()
 		player:update(dt, map)
 		debugHelper:update()
 	elseif GAME_STATE == GAME_STATES.mainMenu then
+		-- MAIN MENU
 		mainMenu:update(dt);
 	end
 end

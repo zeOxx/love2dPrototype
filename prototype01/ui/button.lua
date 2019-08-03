@@ -1,11 +1,12 @@
 Button = Class{}
 
-function Button:init(x, y, width, height, text, func)
+function Button:init(x, y, width, height, text, func, clickSound)
 	self.position = { x = x or 0, y = y or 0 }
 	self.dimensions = { w = width or 1, h = height or 1 }
 	self.hover = false
 	self.text = love.graphics.newText(love.graphics.getFont(), text)
 	self.onClick = func
+	self.clickSound = love.audio.newSource(clickSound or 'audio/menu/btnClick.wav', "static")
 
 	-- helper vars
 	self.position.maxX = self.position.x + self.dimensions.w

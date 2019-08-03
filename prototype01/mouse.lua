@@ -64,6 +64,7 @@ function love.mousereleased(x, y, button, isTouch)
 
 		if button ~= nil then
 			button.onClick()
+			love.audio.play(button.clickSound)
 		end
 	end
 end
