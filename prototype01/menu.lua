@@ -5,7 +5,10 @@ function Menu:init()
 end
 
 function Menu:update(dt)
-
+	for i=#self.buttons, 1, -1 do
+		local button = self.buttons[i]
+		button:update(dt)
+	end
 end
 
 function Menu:draw()

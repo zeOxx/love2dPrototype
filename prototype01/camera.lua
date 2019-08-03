@@ -9,7 +9,6 @@ end
 function Camera:update(x, y)
 	self.position.x = x or player.position.x
 	self.position.y = y or player.position.y
-
 end
 
 function Camera:move(dx, dy)

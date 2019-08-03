@@ -20,7 +20,9 @@ function DebugHelper:drawText(text)
 end
 
 function DebugHelper:draw()
-	self:drawPlayerMouseLine()
+	if GAME_STATE == GAME_STATES.game then
+		self:drawPlayerMouseLine()
+	end
 end
 
 function DebugHelper:drawPlayerMouseLine()

@@ -46,7 +46,7 @@ function love.load()
 
 	if GAME_STATE == GAME_STATES.mainMenu then
 		loadMainMenu()
-	elseif GAME_STATE == GAME.STATES.game then
+	elseif GAME_STATE == GAME_STATES.game then
 		startGame()
 	end
 end
@@ -110,7 +110,7 @@ function love.update(dt)
 		player:update(dt, map)
 		debugHelper:update()
 	elseif GAME_STATE == GAME_STATES.mainMenu then
-
+		mainMenu:update(dt);
 	end
 end
 
