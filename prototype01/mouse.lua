@@ -59,7 +59,6 @@ function love.mousereleased(x, y, button, isTouch)
 	end
 
 	if GAME_STATE == GAME_STATES.mainMenu then
-		print('x: ' .. x .. ', y: ' .. y)
 		local button = menuHelper:getButton(x, y)
 
 		if button ~= nil then
