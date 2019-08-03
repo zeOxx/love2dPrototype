@@ -6,7 +6,7 @@ function Button:init(x, y, width, height, text, func, clickSound)
 	self.hover = false
 	self.text = love.graphics.newText(love.graphics.getFont(), text)
 	self.onClick = func
-	self.clickSound = love.audio.newSource(clickSound or 'audio/menu/btnClick.wav', "static")
+	self.clickSound = love.audio.newSource(clickSound or 'assets/audio/menu/btnClick.wav', "static")
 
 	-- helper vars
 	self.position.maxX = self.position.x + self.dimensions.w
