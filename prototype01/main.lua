@@ -1,4 +1,4 @@
--- lIBS
+-- LIBS
 push = require 'libs/push'
 Class = require 'libs/class'
 
@@ -94,11 +94,6 @@ function startGame()
 	mouse = Mouse(map.playerSpawn.x, map.playerSpawn.y)
 
 	camera = Camera(player.position.x - (VIRTUAL_WIDTH / 2), player.position.y - (VIRTUAL_HEIGHT / 2))
-end
-
--- Update mouse position stuff
-function love.mousemoved(x, y, dx, dy)
-	mouse:updatePosition(dx, dy)
 end
 
 -- update

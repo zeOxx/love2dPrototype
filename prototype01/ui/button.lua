@@ -4,6 +4,8 @@ function Button:init(x, y, width, height, text, func)
 	self.position = { x = x or 0, y = y or 0 }
 	self.dimensions = { w = width or 1, h = height or 1 }
 	self.hover = false
+	self.text = text
+	self.onClick = func
 
 	-- helper vars
 	self.position.maxX = self.position.x + self.dimensions.w
@@ -29,6 +31,14 @@ function Button:update(dt)
 	elseif mousePos.y < self.position.y then
 		self.hover = false
 	end
+
+	if self.hover then
+		self:checkClick(mousePos)
+	end
+end
+
+function Button:checkClick(mousePos)
+
 end
 
 function Button:draw()

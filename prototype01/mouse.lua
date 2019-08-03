@@ -44,3 +44,26 @@ function Mouse:drawDebug()
 	debugHelper:drawText('x: ' .. self.position.x)
 	debugHelper:drawText('y: ' .. self.position.y)
 end
+
+-- Update mouse position stuff
+function love.mousemoved(x, y, dx, dy)
+	mouse:updatePosition(dx, dy)
+end
+
+function love.mousereleased(x, y, button, isTouch)
+	x = mouse.position.x - camera.position.x
+	y = mouse.position.y - camera.position.y
+
+	if button ~= 1 then
+		return
+	end
+
+	if GAME_STATE == GAME_STATES.mainMenu then
+		print('x: ' .. x .. ', y: ' .. y)
+		local button = menuHelper:getButton(x, y)
+
+		if button ~= nil then
+			button.onClick()
+		end
+	end
+end
