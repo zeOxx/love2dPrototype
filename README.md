@@ -6,5 +6,5 @@ Check the [wiki](https://github.com/zeOxx/love2dPrototypes/wiki) for more inform
 
 ### Libs
 [push.lua](https://github.com/Ulydev/push)  
-[class.lua](https://github.com/jonstoler/class.lua)
+[class.lua](https://github.com/jonstoler/class.lua)  
 [inspect.lua](https://github.com/kikito/inspect.lua)
