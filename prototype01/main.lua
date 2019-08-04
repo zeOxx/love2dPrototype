@@ -1,6 +1,7 @@
 -- LIBS
 push = require 'libs/push'
 Class = require 'libs/class'
+inspect = require 'libs/inspect'
 
 -- Classes
 require 'Camera'

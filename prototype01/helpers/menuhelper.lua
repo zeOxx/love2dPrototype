@@ -1,7 +1,15 @@
 require '../Menu'
 require '../ui/Button'
+require '../templates/ButtonTemplate'
 
 MenuHelper = Class{}
+
+function MenuHelper:init()
+	self.btnTemplates = {
+		defaultRounded = ButtonTemplate('assets/templates/button/btnTemplate001.png', 7, 2),
+		defaultSquare = ButtonTemplate('assets/templates/button/btnTemplate002.png', 7, 2)
+	}
+end
 
 function MenuHelper:getMainMenu()
 	local mainMenu = Menu()
@@ -9,8 +17,8 @@ function MenuHelper:getMainMenu()
 	local btnWidth, btnHeight = 80, 20
 
 	-- play button
-	table.insert(mainMenu.buttons, Button((VIRTUAL_WIDTH / 2) - (btnWidth / 2), 100, btnWidth, btnHeight, "play", menuHelper.playGame))
-	table.insert(mainMenu.buttons, Button((VIRTUAL_WIDTH / 2) - (btnWidth / 2), 130, btnWidth, btnHeight, "exit", menuHelper.exitGame))
+	table.insert(mainMenu.buttons, Button((VIRTUAL_WIDTH / 2) - (btnWidth / 2), 100, btnWidth, btnHeight, "play", menuHelper.playGame, nil, "defaultSquare"))
+	table.insert(mainMenu.buttons, Button((VIRTUAL_WIDTH / 2) - (btnWidth / 2), 130, btnWidth, btnHeight, "exit", menuHelper.exitGame, nil, "defaultSquare"))
 
 	return mainMenu
 end

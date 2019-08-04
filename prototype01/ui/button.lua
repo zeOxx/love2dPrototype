@@ -1,12 +1,13 @@
 Button = Class{}
 
-function Button:init(x, y, width, height, text, func, clickSound)
+function Button:init(x, y, width, height, text, func, clickSound, template)
 	self.position = { x = x or 0, y = y or 0 }
 	self.dimensions = { w = width or 1, h = height or 1 }
 	self.hover = false
 	self.text = love.graphics.newText(love.graphics.getFont(), text)
 	self.onClick = func
 	self.clickSound = love.audio.newSource(clickSound or 'assets/audio/menu/btnClick.wav', "static")
+	self.template = menuHelper.btnTemplates[template]
 
 	-- helper vars
 	self.position.maxX = self.position.x + self.dimensions.w
@@ -41,12 +42,11 @@ function Button:draw()
 
 	if self.hover then
 		love.graphics.setColor(1, 1, 1, 1)
-		love.graphics.rectangle("line", self.position.x, self.position.y, self.dimensions.w, self.dimensions.h)
 	else
-		love.graphics.setColor(0.5, 0.5, 0.5, 1)
-		love.graphics.rectangle("line", self.position.x, self.position.y, self.dimensions.w, self.dimensions.h)
+		love.graphics.setColor(0.7, 0.7, 0.7, 1)
 	end
 
+	self.template:draw(self.position, self.dimensions)
 	love.graphics.draw(self.text, self.position.centerX - (self.text:getWidth() / 2), self.position.centerY - (self.text:getHeight() / 2))
 
 	love.graphics.setColor(r, g, b, a)
