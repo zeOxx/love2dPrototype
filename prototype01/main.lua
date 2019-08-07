@@ -13,6 +13,7 @@ require 'Weapon'
 require 'Map'
 require 'TileSet'
 require 'Tile'
+require 'Hud'
 
 -- UI
 
@@ -93,6 +94,7 @@ function startGame()
 
 	player = Player(map.playerSpawn.x, map.playerSpawn.y)
 	mouse = Mouse(map.playerSpawn.x, map.playerSpawn.y)
+	hud = Hud()
 
 	camera = Camera(player.position.x - (VIRTUAL_WIDTH / 2), player.position.y - (VIRTUAL_HEIGHT / 2))
 end
@@ -122,6 +124,8 @@ function love.draw()
 
 		player:draw()
 		mouse:draw()
+
+		hud:draw()
 
 		camera:unset() -- CAMERA UNSET
 

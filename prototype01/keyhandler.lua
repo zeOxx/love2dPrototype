@@ -76,6 +76,8 @@ function Keyhandler:keyReleaseGame(key)
 	end
 end
 
+
+-- LOVE EVENTS
 function love.keypressed(key)
 	if GAME_STATE == GAME_STATES.game then
 		keyhandler:keyPressGame(key)

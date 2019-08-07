@@ -50,6 +50,8 @@ function love.mousemoved(x, y, dx, dy)
 	mouse:updatePosition(dx, dy)
 end
 
+
+-- LOVE EVENTS
 function love.mousereleased(x, y, button, isTouch)
 	x = mouse.position.x - camera.position.x
 	y = mouse.position.y - camera.position.y

@@ -9,6 +9,9 @@ function Player:init(x, y)
 	self.walking = false
 	self.walkSpeed = .5
 
+	self.health = 3
+	self.maxHealth = 5
+
 	self.weapons = {}
 	table.insert(self.weapons, Weapon())
 	self.activeWeapon = 1
