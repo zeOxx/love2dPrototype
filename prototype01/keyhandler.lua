@@ -51,12 +51,10 @@ function Keyhandler:updateGame()
 end
 
 function Keyhandler:updateMenu()
-	if love.mouse.isDown(1) then
-
-	end
+	-- Update menu here
 end
 
-function love.keypressed(key)
+function Keyhandler:keyPressGame(key)
 	-- escape handling
 	if key == 'escape' then
 		love.event.quit()
@@ -72,8 +70,20 @@ function love.keypressed(key)
 	end
 end
 
-function love.keyreleased(key)
+function Keyhandler:keyReleaseGame(key)
 	if key == 'lshift' then
 		player.walking = false
+	end
+end
+
+function love.keypressed(key)
+	if GAME_STATE == GAME_STATES.game then
+		keyhandler:keyPressGame(key)
+	end
+end
+
+function love.keyreleased(key)
+	if GAME_STATE == GAME_STATES.game then
+		keyhandler:keyReleaseGame(key)
 	end
 end
