@@ -1,6 +1,5 @@
 require '../Menu'
 require '../ui/Button'
-require '../templates/ButtonTemplate'
 
 MenuHelper = Class{}
 
