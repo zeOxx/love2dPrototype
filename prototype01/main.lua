@@ -11,11 +11,9 @@ require 'Keyhandler'
 require 'Projectile'
 require 'Weapon'
 require 'Map'
-require 'TileSet'
-require 'Tile'
-require 'Hud'
 
 -- UI
+require 'Hud'
 
 
 -- Helpers

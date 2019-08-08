@@ -115,7 +115,7 @@ function Player:checkCollision(map)
 		nextY = self.position.y + (self.delta.y * self.speed)
 	end
 
-	local tileSetDimensions = map.tileSet.dimensions
+	local tileSetDimensions = 16
 	local collision = false
 	for i = 1, #map.tileCollisionMap do
 		local collTile = map.tileCollisionMap[i]

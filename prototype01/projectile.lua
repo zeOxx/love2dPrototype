@@ -43,7 +43,7 @@ function Projectile:checkCollision(map)
 	nextX = self.position.x + self.direction.x * self.speed
 	nextY = self.position.y + self.direction.y * self.speed
 
-	local tileSetDimensions = map.tileSet.dimensions
+	local tileSetDimensions = 16
 	local collision = false
 	for i = 1, #map.tileCollisionMap do
 		local collTile = map.tileCollisionMap[i]
