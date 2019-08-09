@@ -11,6 +11,7 @@ function Player:init(x, y)
 
 	self.health = 3
 	self.maxHealth = 5
+	self.absoluteMaxHealth = 10
 
 	self.weapons = {}
 	table.insert(self.weapons, Weapon())
@@ -59,6 +60,24 @@ end
 
 function Player:resetDelta()
 	self.delta = { x = 0, y = 0 }
+end
+
+function Player:takeDamage(dmg)
+	self.health = self.health - dmg
+	if self.health < 0 then
+		self.health = 0
+	end
+
+	hud:updateHealthHud()
+end
+
+function Player:heal(health)
+	self.health = self.health + health
+	if self.health > self.maxHealth then
+		self.health = self.maxHealth
+	end
+
+	hud:updateHealthHud()
 end
 
 function Player:update(dt, map)

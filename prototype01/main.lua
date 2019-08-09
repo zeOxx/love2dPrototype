@@ -123,11 +123,11 @@ function love.draw()
 		player:draw()
 		mouse:draw()
 
-		hud:draw()
 
 		camera:unset() -- CAMERA UNSET
 
 		-- HUD STUFF (TODO)
+		hud:draw()
 
 		-- DEBUG
 		drawDebug()

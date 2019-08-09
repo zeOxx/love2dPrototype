@@ -68,6 +68,14 @@ function Keyhandler:keyPressGame(key)
 	if key == 'lshift' then
 		player.walking = true
 	end
+
+	if key == 'o' then
+		player:takeDamage(1)
+	end
+
+	if key == 'p' then
+		player:heal(1)
+	end
 end
 
 function Keyhandler:keyReleaseGame(key)
