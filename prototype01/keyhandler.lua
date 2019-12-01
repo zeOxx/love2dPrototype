@@ -84,11 +84,19 @@ function Keyhandler:keyReleaseGame(key)
 	end
 end
 
+function Keyhandler:keyPressEditor(key)
+	-- escape handling
+	if key == 'escape' then
+		love.event.quit()
+	end
+end
 
 -- LOVE EVENTS
 function love.keypressed(key)
 	if GAME_STATE == GAME_STATES.game then
 		keyhandler:keyPressGame(key)
+	elseif GAME_STATE == GAME_STATES.editor then
+		keyhandler:keyPressEditor(key)
 	end
 end
 

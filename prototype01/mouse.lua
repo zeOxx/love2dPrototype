@@ -34,7 +34,7 @@ end
 function Mouse:draw()
 	if GAME_STATE == GAME_STATES.game then
 		love.graphics.draw(self.crosshairSprite, self.position.x, self.position.y)
-	elseif GAME_STATE == GAME_STATES.mainMenu then
+	elseif GAME_STATE == GAME_STATES.mainMenu or GAME_STATE == GAME_STATES.editor then
 		love.graphics.draw(self.menuSprite, self.position.x, self.position.y)
 	end
 end
@@ -66,6 +66,15 @@ function love.mousereleased(x, y, button, isTouch)
 		if button ~= nil then
 			button.onClick()
 			love.audio.play(button.clickSound)
+		end
+	elseif GAME_STATE == GAME_STATES.editor then
+		-- check if click landed on taskbar button
+		if y <= editor.taskbar.height then
+			local button = editorHelper:getButton(x, y)
+
+			if button ~= nil then
+				button:click()
+			end
 		end
 	end
 end

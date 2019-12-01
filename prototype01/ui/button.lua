@@ -42,21 +42,7 @@ function Button:update(dt)
 	-- get mouse position and check if mouse is hovering over button
 	local mousePos = mouse.position
 
-	self.hover = true
-
-	-- X
-	if mousePos.x > self.position.maxX then
-		self.hover = false
-	elseif mousePos.x < self.position.x then
-		self.hover = false
-	end
-
-	-- Y
-	if mousePos.y > self.position.maxY then
-		self.hover = false
-	elseif mousePos.y < self.position.y then
-		self.hover = false
-	end
+	self.hover = generalHelper:checkIntersect(self.position.x, self.position.maxX, self.position.y, self.position.maxY)
 end
 
 function Button:draw()

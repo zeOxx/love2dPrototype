@@ -10,10 +10,9 @@ function Map:init()
 	self.playerSpawn = { x = 0, y = 0 }
 end
 
-function Map:loadMap(mapname, tileSet, w, h)
+function Map:loadMap(mapname, tileSet)
 	-- RESET VALUES FOR PREVIOUSLY LOADED MAP
-	mapname = mapname or "devmap"
-	self.tileSet = tileSet
+	local mapname = mapname or "devmap"
 	self.tileMap = {}
 	self.tileWidth = w or 16
 	self.tileHeight = h or 16
@@ -22,8 +21,13 @@ function Map:loadMap(mapname, tileSet, w, h)
 	self.tileCollisionMap = {}
 	self.playerSpawn = { x = 0, y = 0 }
 
+	--load json file for map
+	local levelData = self:loadLevelData(mapname)
+	self.tileSet = tileHelper:getTileSet(tileHelper.tileSets[levelData.tileSet])
+	print(inspect(levelData))
+
 	-- read actual tile map (sprites)
-	for line in love.filesystem.lines('maps/' .. mapname .. '.txt') do
+	for line in love.filesystem.lines(levelData.paths.layout) do
 		table.insert(self.tileMap, line)
 	end
 
@@ -40,12 +44,12 @@ function Map:loadMap(mapname, tileSet, w, h)
 	end
 
 	-- read prop data
-	for line in love.filesystem.lines('maps/' .. mapname .. '.dat') do
+	for line in love.filesystem.lines(levelData.paths.data) do
 		table.insert(self.tileDataMap, line)
 	end
 
 	-- read collision data
-	for line in love.filesystem.lines('maps/' .. mapname .. '.col') do
+	for line in love.filesystem.lines(levelData.paths.collision) do
 		table.insert(self.tileCollisionMapData, line)
 	end
 
@@ -112,4 +116,36 @@ function Map:drawDebug()
 		love.graphics.rectangle("line", col.x, col.y, 16, 16 )
 	end
 	love.graphics.setColor(1, 1, 1, 1)
+end
+
+
+-- simple helper stuff for level data
+function Map:loadLevelData(mapname)
+	local levelData = json:decode(love.filesystem.read(self:infoPath(mapname)))
+	levelData.paths = self:getPathsForLevel(levelData)
+	return levelData
+end
+
+function Map:infoPath(levelName)
+	return 'maps/' .. levelName .. '/map.json'
+end
+
+function Map:getPathsForLevel(levelInfo)
+	return {
+		layout = self:layoutPath(levelInfo.mapname, levelInfo.layout),
+		collision = self:collisionPath(levelInfo.mapname, levelInfo.collisionMap),
+		data = self:dataPath(levelInfo.mapname, levelInfo.dataMap)
+	}
+end
+
+function Map:layoutPath(levelName, file)
+	return 'maps/' .. levelName .. '/' .. file
+end
+
+function Map:collisionPath(levelName, file)
+	return 'maps/' .. levelName .. '/' .. file
+end
+
+function Map:dataPath(levelName, file)
+	return 'maps/' .. levelName .. '/' .. file
 end

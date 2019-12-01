@@ -1,0 +1,7 @@
+{
+	"mapname": "devmap",
+	"layout": "devmap.lev",
+	"collisionMap": "devmap.col",
+	"dataMap": "devmap.dat",
+	"tileSet": "dev"
+}

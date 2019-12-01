@@ -1,7 +1,7 @@
-require '../Menu'
-require '../ui/Button'
-
 MenuHelper = Class{}
+
+require '../ui/Button'
+require '../Menu'
 
 function MenuHelper:init()
 	self.btnTemplates = {
@@ -17,7 +17,8 @@ function MenuHelper:getMainMenu()
 
 	-- play button
 	table.insert(mainMenu.buttons, Button((VIRTUAL_WIDTH / 2) - (btnWidth / 2), 100, btnWidth, btnHeight, "play", menuHelper.playGame, nil, self.btnTemplates.ornate, 7, 2))
-	table.insert(mainMenu.buttons, Button((VIRTUAL_WIDTH / 2) - (btnWidth / 2), 130, btnWidth, btnHeight, "exit", menuHelper.exitGame, nil, self.btnTemplates.ornate, 7, 2))
+	table.insert(mainMenu.buttons, Button((VIRTUAL_WIDTH / 2) - (btnWidth / 2), 130, btnWidth, btnHeight, "map editor", menuHelper.initMapEditor, nil, self.btnTemplates.ornate, 7, 2))
+	table.insert(mainMenu.buttons, Button((VIRTUAL_WIDTH / 2) - (btnWidth / 2), 160, btnWidth, btnHeight, "exit", menuHelper.exitGame, nil, self.btnTemplates.ornate, 7, 2))
 
 	return mainMenu
 end
@@ -25,6 +26,11 @@ end
 function MenuHelper:playGame()
 	startGame()
 	GAME_STATE = GAME_STATES.game
+end
+
+function MenuHelper:initMapEditor()
+	startEditor()
+	GAME_STATE = GAME_STATES.editor
 end
 
 function MenuHelper:exitGame()

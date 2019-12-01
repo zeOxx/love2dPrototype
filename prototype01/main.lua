@@ -2,6 +2,7 @@
 push = require 'libs/push'
 Class = require 'libs/class'
 inspect = require 'libs/inspect'
+json = require 'libs/json'
 
 -- Classes
 require 'Camera'
@@ -11,17 +12,18 @@ require 'Keyhandler'
 require 'Projectile'
 require 'Weapon'
 require 'Map'
+require 'editor/Editor'
 
 -- UI
 require 'Hud'
-
 
 -- Helpers
 require 'helpers/Debughelper'
 require 'helpers/Camerahelper'
 require 'helpers/Tilehelper'
 require 'helpers/Menuhelper'
-
+require 'helpers/EditorHelper'
+require 'helpers/GeneralHelper'
 
 -- Globals
 GAME_TITLE = 'Prototype01'
@@ -34,7 +36,13 @@ RATIO = RESOLUTION_WIDTH / VIRTUAL_WIDTH
 
 DEBUG = false
 
-GAME_STATES = { mainMenu = "mainMenu", pause = "pause", inventory = "inventory", game = "game" }
+GAME_STATES = {
+	mainMenu = "mainMenu",
+	pause = "pause",
+	inventory = "inventory",
+	game = "game",
+	editor = "editor"
+}
 GAME_STATE = GAME_STATES.mainMenu
 
 -- Load
@@ -78,6 +86,8 @@ function initHelpers()
 	cameraHelper = CameraHelper()
 	tileHelper = TileHelper()
 	menuHelper = MenuHelper()
+	editorHelper = EditorHelper()
+	generalHelper = GeneralHelper()
 end
 
 function loadMainMenu()
@@ -88,13 +98,18 @@ end
 
 function startGame()
 	map = Map()
-	map:loadMap('devmap', tileHelper:getDevTileSet())
+	map:loadMap('devmap')
 
 	player = Player(map.playerSpawn.x, map.playerSpawn.y)
 	mouse = Mouse(map.playerSpawn.x, map.playerSpawn.y)
 	hud = Hud()
 
 	camera = Camera(player.position.x - (VIRTUAL_WIDTH / 2), player.position.y - (VIRTUAL_HEIGHT / 2))
+end
+
+function startEditor()
+	editor = Editor()
+	mouse = Mouse(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2)
 end
 
 -- update
@@ -108,16 +123,18 @@ function love.update(dt)
 		debugHelper:update()
 	elseif GAME_STATE == GAME_STATES.mainMenu then
 		-- MAIN MENU
-		mainMenu:update(dt);
+		mainMenu:update(dt)
+	elseif GAME_STATE == GAME_STATES.editor then
+		editor:update(dt)
 	end
 end
 
 function love.draw()
-	camera:set() -- CAMERA SET
-	-- clear screen
-	love.graphics.clear({ 0, 0, 0, 1 })
-
 	if GAME_STATE == GAME_STATES.game then
+		camera:set() -- CAMERA SET
+		-- clear screen
+		love.graphics.clear({ 0, 0, 0, 1 })
+
 		map:draw()
 
 		player:draw()
@@ -132,7 +149,18 @@ function love.draw()
 		-- DEBUG
 		drawDebug()
 	elseif GAME_STATE == GAME_STATES.mainMenu then
+		camera:set() -- CAMERA SET
+		-- clear screen
+		love.graphics.clear({ 0, 0, 0, 1 })
+
 		mainMenu:draw()
+		mouse:draw()
+
+		camera:unset()
+	elseif GAME_STATE == GAME_STATES.editor then
+		camera:set()
+
+		editor:draw()
 		mouse:draw()
 
 		camera:unset()
